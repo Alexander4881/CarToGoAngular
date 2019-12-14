@@ -1,0 +1,49 @@
+<div fxLayout="column" class="page-main" fxLayoutAlign="center center">
+  <div class="home-banner-wrapper" fxLayout="row">
+    <div class="inner" fxLayout="row" fxLayoutGap="15%" fxLayoutAlign="space-around center">
+      <div class="left">
+        <img src="/assets/part5.png" [ngStyle.lt-md]="{'width': '98%'}">
+      </div>
+      <div class="right button-wrapper" fxHide.lt-md="true">
+        <button mat-raised-button color="primary" class="btn-registration">
+          Tilmeld dig nu
+        </button>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" class="home-car-box-1">
+    <div class="box-1-title">
+      <h2>Sådan reserverer du en CarToGo</h2>
+    </div>
+    <div class="box-1-image" fxLayout="row warp" fxLayoutAlign="center center">
+      <div class="stepbox step1" [ngStyle.lt-lg]="{'margin-left': '150px'}" [ngStyle.lt-md]="{'margin-left': '47px'}" [ngStyle.lt-sm]="{'margin-left': '0px'}"><p>Find bilen</p></div>
+      <div class="stepbox step2" [ngStyle.lt-lg]="{'margin-left': '150px'}" [ngStyle.lt-md]="{'margin-left': '47px'}" [ngStyle.lt-sm]="{'margin-left': '0px'}"><p>Reserver bilen</p></div>
+      <div class="stepbox step3" [ngStyle.lt-lg]="{'margin-left': '150px'}" [ngStyle.lt-md]="{'margin-left': '47px'}" [ngStyle.lt-sm]="{'margin-left': '0px'}"><p>Klar til at køre</p></div>
+      <div class="stepbox step4" [ngStyle.lt-lg]="{'margin-left': '150px'}" [ngStyle.lt-md]="{'margin-left': '47px'}" [ngStyle.lt-sm]="{'margin-left': '0px'}"><p>Lås og betaler bilen</p></div>
+    </div>
+  </div>
+  <section class="top-shape-wrapper">
+    <div class="top-shape">
+    </div>
+  </section>
+  <div fxLayout="column" fxLayoutAlign="center center" class="home-car-box-2" fxHide.lt-sm="true">
+    <h4>Hvor grønne er elbiler i virkeligheden?</h4>
+    <div class="save-money" [ngStyle.lt-md]="{'width': '100%'}">
+      <img src="/assets/building.png" alt="" class="save-money-pic">
+      <div class="cash-center">
+        <p>København -- Odense</p>
+        <p>169 km, 1.53t.</p>
+      </div>
+      <div class="cash-cont">
+        <div class="cash-cont-left clearfix">
+          <div class="start-point">Fra</div>
+          <p>Kør med elbil udleder <span>0</span> gram CO2 </p>
+        </div>
+        <div class="cash-cont-right clearfix">
+          <div class="end-poing" [ngStyle.lt-md]="{'margin-left': '203px'}">Til</div>
+          <p [ngStyle.lt-md]="{'margin-left': '103px'}">Kør med benzinbil udleder <span>5664</span> gram CO2 </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

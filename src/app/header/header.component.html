@@ -1,0 +1,87 @@
+<header fxLayout="row">
+  <nav fxFlex="100%">
+    <mat-toolbar color="primary" role="heading" fxLayoutAlign="center center">
+      <mat-toolbar-row class="tool-bar" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <a mat-button routerLink=".">
+            <img src="/assets/logo.png" style="width: 198px; height: 42px" [ngStyle.xs]="{'width': '120px', 'height': '28px'}" />
+          </a>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span class="clean-spacer"></span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <!--login button-->
+          <button mat-icon-button aria-label="Login" matTooltip="Login">
+            <mat-icon (click)="createLoginMenu()">person</mat-icon>
+            <div #loginMenuBtn></div>
+          </button>
+          <ng-template #loginMenuTpl cdk-portal>
+            <div class="login-dropdown-wrapper" fxLayoutAlign="center center">
+              <div class="login-dropdown-inner" fxLayout="column" fxLayoutGap="10%">
+                <!--title-->
+                <div class="login-dropdown-title">
+                  <h3>Log ind</h3>
+                </div>
+                <!--form-->
+                <form fxLayout="column">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="password" placeholder="Adgangskode">
+                  </mat-form-field>
+                  <button mat-raised-button color="primary">LOG IN</button>
+                </form>
+
+                <div class="login-dropdown-link">
+                  <!--forgot password-->
+                  <div class="link link-arrow">
+                    <a mat-button routerLink=".">
+                      <span>Glemt din adgangskode?</span>
+                    </a>
+                  </div>
+                  <!--create profil-->
+                  <div class="link link-arrow">
+                    <a mat-button routerLink=".">
+                      <span>Ikke kunde endnu? Tilmeld dig her.</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <!--add profil button-->
+          <button routerLink="createprofile" mat-icon-button aria-label="Add profil" matTooltip="Add Profil" fxHide.lt-sm="true">
+            <mat-icon>person_add</mat-icon>
+          </button>
+          <!--menu button-->
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" matTooltip="Menu">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>CarToGo</mat-card-title>
+                <mat-card-subtitle>Hello</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+            <button mat-menu-item>
+              <mat-icon>person</mat-icon>
+              <span>Login</span>
+            </button>
+            <button routerLink="reservecar" mat-menu-item>
+              <mat-icon>commute</mat-icon>
+              <span>Reserve Car</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </nav>
+</header>

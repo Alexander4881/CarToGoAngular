@@ -1,0 +1,13 @@
+<div fxLayout="column" class="page-main" fxLayoutAlign="center center">
+  <div class="reserve-car-wrapper">
+    <h1>
+      Welcome to Google Maps and Angular
+    </h1>
+    <div #mapWrapper id="map"></div>
+    <h1>
+      <app-reserve-car-show-details></app-reserve-car-show-details>
+      <button mat-button color="primary">Primary</button>
+      <button mat-raised-button (click)="openDialog()">Pick one</button>
+    </h1>
+  </div>
+</div>

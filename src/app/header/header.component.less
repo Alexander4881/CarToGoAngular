@@ -1,0 +1,52 @@
+@import "../../assets/variables.less";
+
+header {
+  .tool-bar {
+    max-width: @wrapperMaxWidth;
+
+    .clean-spacer {
+      width: 20px;
+    }
+  }
+}
+
+.login-dropdown-wrapper {
+  width: 320px;
+  height: 405px;
+  /*background: #C5CAE9;*/
+  background: linear-gradient(-45deg,#9FA8DA 0%,#E8EAF6 100%);
+
+  .login-dropdown-inner {
+    width: 90%;
+
+    .login-dropdown-title {
+      color: #fff;
+    }
+
+    .login-dropdown-link {
+      a {
+        color: #fff;
+
+        &:before {
+          font-family: 'Material Icons';
+          content: "\e5c8";
+          margin-left: -14px;
+        }
+
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+.example-card {  
+  max-width: 400px;
+  box-shadow: none;
+}
+
+.example-header-image {
+  background-image: url('/assets/avatar_02.png');
+  background-size: cover;
+}

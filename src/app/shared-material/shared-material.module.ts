@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 
 import { MatButtonModule } from '@angular/material';
@@ -21,7 +24,7 @@ import { PortalModule } from '@angular/cdk/portal';
 
 
 @NgModule({
-  exports: [MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, LayoutModule, FlexLayoutModule, MatMenuModule, MatIconModule, OverlayModule, PortalModule, MatToolbarModule, MatTooltipModule],
+  exports: [MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, LayoutModule, FlexLayoutModule, MatMenuModule, MatIconModule, OverlayModule, PortalModule, MatToolbarModule, MatTooltipModule, MatStepperModule, MatRadioModule, MatCardModule],
   declarations: [],
   imports: [
     CommonModule

@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\e2e",
     "\\src",
-    "\\src\\app",
+    "\\src\\app\\reserve-car",
     "\\src\\app\\shared-material",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\shared-material\\shared-material.module.ts",
+  "SelectedNode": "\\src\\assets\\car-01.jpg",
   "PreviewInSolutionExplorer": false
 }
