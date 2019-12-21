@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedMaterialModule } from './shared-material/shared-material.module';
 
@@ -12,6 +13,8 @@ import { IndexPageMainComponent } from './index-page-main/index-page-main.compon
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ReserveCarComponent, ShowCarDetailsDialog } from './reserve-car/reserve-car.component';
 import { ReserveCarShowDetailsComponent } from './reserve-car-show-details/reserve-car-show-details.component';
+import { OrderListComponent, ShowDeliverCarDialog } from './order-list/order-list.component';
+import { DeliverCarComponent } from './deliver-car/deliver-car.component';
 
 @NgModule({
   declarations: [
@@ -21,17 +24,19 @@ import { ReserveCarShowDetailsComponent } from './reserve-car-show-details/reser
     IndexPageMainComponent,
     CreateProfileComponent,
     ReserveCarComponent, ShowCarDetailsDialog,
-    ReserveCarShowDetailsComponent
+    ReserveCarShowDetailsComponent,
+    OrderListComponent, ShowDeliverCarDialog, DeliverCarComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedMaterialModule
   ],
-  entryComponents: [ ReserveCarComponent, ShowCarDetailsDialog ],
+  entryComponents: [ReserveCarComponent, ShowCarDetailsDialog, OrderListComponent, ShowDeliverCarDialog ],
   providers: [],
   bootstrap: [AppComponent]
 })

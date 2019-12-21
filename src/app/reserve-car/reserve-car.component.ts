@@ -124,13 +124,20 @@ export class ReserveCarComponent implements AfterViewInit {
 })
 
 export class ShowCarDetailsDialog {
+  isCarDetailsActive: boolean = true;
+  isCarRreservedActive: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ShowCarDetailsDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  createReserveCar(): void {
+    this.isCarDetailsActive = false;
+    this.isCarRreservedActive = true;
   }
 
 }

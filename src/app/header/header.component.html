@@ -24,14 +24,17 @@
                   <h3>Log ind</h3>
                 </div>
                 <!--form-->
-                <form fxLayout="column">
+                
+                <!--loginForm.get('email').value -->
+                <form [formGroup]="loginForm" fxLayout="column">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email">
+                    <input id="email" matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="email.invalid">Indtast venligst en gyldig e-mailadresse</mat-error>
                   </mat-form-field>
                   <mat-form-field class="example-full-width">
-                    <input matInput type="password" placeholder="Adgangskode">
+                    <input matInput type="password" placeholder="Adgangskode" formControlName="password">
                   </mat-form-field>
-                  <button mat-raised-button color="primary">LOG IN</button>
+                  <button mat-raised-button color="primary" [disabled]="!loginForm.valid">LOG IN</button>
                 </form>
 
                 <div class="login-dropdown-link">
@@ -75,9 +78,9 @@
               <mat-icon>commute</mat-icon>
               <span>Reserve Car</span>
             </button>
-            <button mat-menu-item disabled>
-              <mat-icon>notifications_off</mat-icon>
-              <span>Disable alerts</span>
+            <button routerLink="orderlist" mat-menu-item>
+              <mat-icon>list_alt</mat-icon>
+              <span>Order</span>
             </button>
           </mat-menu>
         </div>

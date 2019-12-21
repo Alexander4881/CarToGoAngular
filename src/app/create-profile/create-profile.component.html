@@ -8,36 +8,38 @@
         <form [formGroup]="firstFormGroup" fxLayout="column">
           <ng-template matStepLabel>Profil</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Din e-mail(dit brugernavn)" formControlName="firstCtrl" required>
+            <input matInput placeholder="Din e-mail(dit brugernavn)" formControlName="email" required>
+            <mat-error *ngIf="email.invalid">Indtast venligst en gyldig e-mailadresse</mat-error>
           </mat-form-field>
           <div class="sex-radio-group">
             <label id="sex-radio-group-label" class="sex-radio-group-label">Køn:</label>
-            <mat-radio-group aria-labelledby="sex-radio-group-label" color="primary">
+            <mat-radio-group aria-labelledby="sex-radio-group-label" color="primary" formControlName="sex">
               <mat-radio-button value="1">Mand</mat-radio-button>
-              <mat-radio-button value="2">Kvinde</mat-radio-button>
+              <mat-radio-button value="0">Kvinde</mat-radio-button>
             </mat-radio-group>
           </div>
           <mat-form-field>
-            <input matInput placeholder="Fornavn" formControlName="firstCtrl" required>
+            <input matInput placeholder="Fornavn" formControlName="firstName" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Efternavn" formControlName="firstCtrl" required>
+            <input matInput placeholder="Efternavn" formControlName="aftertName" required>
           </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Din adresse" formControlName="firstCtrl" required>
+          <mat-form-field>            
+            <input matInput placeholder="Din adresse" formControlName="address" required>
           </mat-form-field>
-          <mat-form-field class="datepicker">
-            <input matInput [matDatepicker]="picker" placeholder="Fødselsdag">
+          <mat-form-field class="datepicker">            
+            <input matInput [matDatepicker]="picker" placeholder="Fødselsdag" formControlName="bod">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Vælg adgangskode" formControlName="firstCtrl" required>
+            <input matInput placeholder="Vælg adgangskode" formControlName="password" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Gentag adgangskode" formControlName="firstCtrl" required>
+            <input matInput placeholder="Gentag adgangskode" formControlName="retypePassword" required>
           </mat-form-field>
           <div>
+            <button mat-raised-button color="primary" class="btn" (click)="addtest()">Test</button>
             <button mat-raised-button color="primary" matStepperNext class="btn">Next</button>
           </div>
         </form>

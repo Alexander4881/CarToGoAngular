@@ -13,14 +13,47 @@
   width: 100%;
 }
 
-.car-card {
-  width: 90%;
+.car-reserved {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
 
-  .car-title-text {
+  h3 {
+    text-align: center;
+    color: #9FA8DA;
 
+    &:before {
+      color: #9FA8DA;
+      content: "";
+      border: 1px #9FA8DA solid;
+      width: 30px;
+      display: inline-block;
+      position: relative;
+      top: -5px;
+      left: -15px;
+    }
+
+    &:after {
+      color: #9FA8DA;
+      content: "";
+      border: 1px #9FA8DA solid;
+      width: 30px;
+      display: inline-block;
+      position: relative;
+      top: -5px;
+      left: 15px;
+    }
   }
 
-  .car-info-text {
-    color: #9FA8DA;
+  p {
+    text-align: center;
+    letter-spacing: 7px;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .pin-code {
+    font-family: 'Anton', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 13px;
   }
 }

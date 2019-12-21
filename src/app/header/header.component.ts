@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Overlay, OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,19 @@ export class HeaderComponent implements OnInit {
   //login menu
   @ViewChild('loginMenuBtn', { static: false }) loginMenuBtn: HTMLElement;
   @ViewChild('loginMenuTpl', { static: false }) loginMenuTpl: TemplateRef<any>;
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
+    password: new FormControl('', [
+      Validators.required
+    ]),
+  });
+
+  get email() { return this.loginForm.get('email'); }
+  get password() { return this.loginForm.get('password'); }
 
   overlayRef2: OverlayRef;
   title = 'cartogo';

@@ -1,12 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\e2e",
     "\\src",
-    "\\src\\app\\reserve-car",
-    "\\src\\app\\shared-material",
-    "\\src\\assets"
+    "\\src\\app",
+    "\\src\\app\\create-profile",
+    "\\src\\app\\interface",
+    "\\src\\app\\service"
   ],
-  "SelectedNode": "\\src\\assets\\car-01.jpg",
+  "SelectedNode": "\\src\\app\\interface\\customer.ts",
   "PreviewInSolutionExplorer": false
 }

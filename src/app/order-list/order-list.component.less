@@ -1,0 +1,44 @@
+@import "../../assets/variables.less";
+
+.page-main {
+  width: 100%;
+
+  .order-list-wrapper {
+    max-width: @wrapperMaxWidth;
+    width: 95%;
+
+    .progress-spinner {
+      width: 100%;
+    }
+
+    .order-data-view {
+      min-height: 410px;
+
+      table {
+        width: 99%
+      }
+
+      .mat-row {
+        &:hover {
+          background-color: #ded9d9;
+        }
+      }
+
+      .mat-column-management {
+        padding-right: 0px;
+      }
+    }
+  }
+
+}
+
+.deliver-car-pay {
+  .pay-btn {
+    width: 100px;
+    margin-right: 30px;
+  }
+
+  .cancel-btn {
+    width: 100px;
+  }
+}
