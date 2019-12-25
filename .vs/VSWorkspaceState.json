@@ -4,9 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\create-profile",
-    "\\src\\app\\interface",
-    "\\src\\app\\service"
+    "\\src\\app\\reserve-car",
+    "\\src\\app\\service",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\interface\\customer.ts",
+  "SelectedNode": "\\src\\app\\reserve-car\\reserve-car.component.ts",
   "PreviewInSolutionExplorer": false
 }

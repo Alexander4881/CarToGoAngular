@@ -1,13 +1,13 @@
 <div class="car-details" [style.display]="isCarDetailsActive? 'block' : 'none'">
-  <app-reserve-car-show-details></app-reserve-car-show-details>
+  <app-reserve-car-show-details [currentCar]="data.currentCar"></app-reserve-car-show-details>
   <button mat-raised-button color="primary" (click)="createReserveCar()">Reserver</button>
   <a mat-button (click)="closeDialog()">Close</a>
 </div>
 
 <div class="car-reserved" [style.display]="isCarRreservedActive? 'block' : 'none'" fxLayout="column" fxLayoutAlign="center center">
   <h3>Pinkode</h3>
-  <p class="pin-code">123456</p>
+  <p class="pin-code">{{pinkCode}}</p>
   <h3>Fristen</h3>
-  <p>2012-12-12 13:13:59</p>
+  <p>{{validityDT | date: 'dd/MM/yyyy HH:mm'}}</p>
   <button mat-raised-button color="primary" style="width: 100%;" (click)="closeDialog()">Godkende</button>
 </div>

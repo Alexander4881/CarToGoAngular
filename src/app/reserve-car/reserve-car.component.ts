@@ -1,10 +1,19 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { } from "googlemaps";
+import { Router } from '@angular/router'; 
+
+import { CarService } from '../service/car.service';
+import { CustomersService } from '../service/customers.service'
+import { OrdercarService } from '../service/ordercar.service'
+import { Car } from '../interface/car';
+import { OrderCar, ReserverCar } from '../interface/order-car'
+
 
 export interface DialogData {
-  animal: string;
+  carRefId: number;
   name: string;
+  currentCar: Car
 }
 
 @Component({
@@ -18,14 +27,19 @@ export class ReserveCarComponent implements AfterViewInit {
   @ViewChild('mapWrapper', { static: false }) mapElement: ElementRef;
 
   ngAfterViewInit() {
-    this.initializeMap();
+    this.carService.getAllCar().subscribe(data => {
+      this.carService.allCars = data;
+      this.initializeMap();
+      console.log(this.carService.allCars);
+    });
   }
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private carService: CarService) { }
 
-  openDialog(): void {
+
+  openDialog(currentCar: Car): void {
     const dialogRef = this.dialog.open(ShowCarDetailsDialog, {
       width: '300px',
-      data: { name: 'abc', animal: 'abc' }
+      data: { name: 'car', carRefId: 0, currentCar: currentCar}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -37,6 +51,8 @@ export class ReserveCarComponent implements AfterViewInit {
   initializeMap() {
     let collection = new Array();
     let markerCollection = new Array();
+
+
     collection[0] = new google.maps.LatLng(55.427645, 11.782827);
     collection[1] = new google.maps.LatLng(55.427879, 11.782961);
     collection[2] = new google.maps.LatLng(55.428322, 11.783165);
@@ -62,20 +78,40 @@ export class ReserveCarComponent implements AfterViewInit {
 
     let that = this;
 
-    collection.forEach(function (value,index) {
-      console.log(index);
-      markerCollection[index] = new google.maps.Marker({
-        position: value,      
-      });
-      markerCollection[index].setMap(this.map);
+    this.carService.allCars.forEach(function (value, index) {
+      if (value.gpsCordinat !== null) {
 
-      google.maps.event.addListener(markerCollection[index], 'click', function () {
-        console.log('hello world2');
-        that.openDialog();
-        //infowindow.open(this.map, markerCollection[index]);
-      });
+        let carConrdinat = new google.maps.LatLng(value.gpsCordinat.latitude, value.gpsCordinat.longitude);
+
+        markerCollection[index] = new google.maps.Marker({
+          position: carConrdinat,
+        });
+        markerCollection[index].setMap(this.map);
+
+        google.maps.event.addListener(markerCollection[index], 'click', function () {
+          console.log('hello world2');
+          that.openDialog(value);
+        });
+
+      }
+
+    }, this);
+    //return
+
+    //collection.forEach(function (value,index) {
+    //  console.log(index);
+    //  markerCollection[index] = new google.maps.Marker({
+    //    position: value,      
+    //  });
+    //  markerCollection[index].setMap(this.map);
+
+    //  google.maps.event.addListener(markerCollection[index], 'click', function () {
+    //    console.log('hello world2');
+    //    that.openDialog(405);
+    //    //infowindow.open(this.map, markerCollection[index]);
+    //  });
    
-    },this); 
+    //},this); 
 
 
     //if ('geolocation' in navigator) {
@@ -126,18 +162,37 @@ export class ReserveCarComponent implements AfterViewInit {
 export class ShowCarDetailsDialog {
   isCarDetailsActive: boolean = true;
   isCarRreservedActive: boolean = false;
+  pinkCode: string = '';
+  validityDT: string = '';
 
   constructor(
+    private router: Router,
+    private customersService: CustomersService,
+    private ordercarService: OrdercarService,
     public dialogRef: MatDialogRef<ShowCarDetailsDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   closeDialog(): void {
-    this.dialogRef.close();
+    console.log('is data:');
+    console.log(this.data.currentCar);
+    this.router.navigateByUrl("orderlist");
+    this.dialogRef.close();    
   }
 
   createReserveCar(): void {
-    this.isCarDetailsActive = false;
-    this.isCarRreservedActive = true;
+
+    if (this.customersService.currentCustomer) {
+
+      let reserverCar: ReserverCar = { carID: this.data.currentCar.id, customerID: this.customersService.currentCustomer.id };
+
+      this.ordercarService.createOrder(reserverCar).subscribe(data => {
+        this.isCarDetailsActive = false;
+        this.isCarRreservedActive = true;
+        this.pinkCode = data.pinkCode.toString();
+        this.validityDT = data.validityDT.toString();
+      });
+
+    } 
   }
 
 }

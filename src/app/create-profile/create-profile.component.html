@@ -3,7 +3,7 @@
     <h2>
       Tilmeld dig nu og kør allerede i dag!<br />Altid en bybil, der passer dig
     </h2>
-    <mat-vertical-stepper #stepper>
+    <mat-vertical-stepper #stepper linear="false">
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" fxLayout="column">
           <ng-template matStepLabel>Profil</ng-template>
@@ -14,33 +14,36 @@
           <div class="sex-radio-group">
             <label id="sex-radio-group-label" class="sex-radio-group-label">Køn:</label>
             <mat-radio-group aria-labelledby="sex-radio-group-label" color="primary" formControlName="sex">
-              <mat-radio-button value="1">Mand</mat-radio-button>
+              <mat-radio-button value="1" checked>Mand</mat-radio-button>
               <mat-radio-button value="0">Kvinde</mat-radio-button>
             </mat-radio-group>
           </div>
           <mat-form-field>
             <input matInput placeholder="Fornavn" formControlName="firstName" required>
+            <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">test</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Efternavn" formControlName="aftertName" required>
           </mat-form-field>
-          <mat-form-field>            
+          <mat-form-field>
             <input matInput placeholder="Din adresse" formControlName="address" required>
           </mat-form-field>
-          <mat-form-field class="datepicker">            
-            <input matInput [matDatepicker]="picker" placeholder="Fødselsdag" formControlName="bod">
+          <mat-form-field class="datepicker">
+            <input matInput [matDatepicker]="picker" placeholder="Fødselsdag" formControlName="bod" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Vælg adgangskode" formControlName="password" required>
+            <input matInput type="password" placeholder="Vælg adgangskode" formControlName="password" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Gentag adgangskode" formControlName="retypePassword" required>
+            <input matInput type="password" placeholder="Gentag adgangskode" formControlName="retypePassword" required>
+            <mat-error *ngIf="retypePassword.invalid && (retypePassword.dirty || retypePassword.touched)">
+              Adgangskoder er ikke ens
+            </mat-error>
           </mat-form-field>
           <div>
-            <button mat-raised-button color="primary" class="btn" (click)="addtest()">Test</button>
-            <button mat-raised-button color="primary" matStepperNext class="btn">Next</button>
+            <button mat-raised-button color="primary" matStepperNext class="btn">Næste</button>
           </div>
         </form>
       </mat-step>
@@ -48,24 +51,24 @@
         <form [formGroup]="secondFormGroup" fxLayout="column">
           <ng-template matStepLabel>Kørekort</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Kørekortnummer" formControlName="secondCtrl" required>
+            <input matInput placeholder="Kørekortnummer" formControlName="driversLicensNumber" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Udstedelsesland" formControlName="secondCtrl">
+            <input matInput placeholder="Udstedelsesland" formControlName="country" required>
           </mat-form-field>
           <mat-form-field class="datepicker">
-            <input matInput [matDatepicker]="picker2" placeholder="Gyldig fra(se kørekortets bagside)">
+            <input matInput [matDatepicker]="picker2" placeholder="Gyldig fra(se kørekortets bagside)" formControlName="validityDate" required>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="datepicker">
-            <input matInput [matDatepicker]="picker3" placeholder="Udløbsdato">
+            <input matInput [matDatepicker]="picker3" placeholder="Udløbsdato" formControlName="expiryDate" required>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
           <div>
-            <button mat-raised-button color="primary" matStepperPrevious class="btn">Back</button>
-            <button mat-raised-button color="primary" matStepperNext class="btn">Next</button>
+            <button mat-raised-button color="primary" matStepperPrevious class="btn">Tilbage</button>
+            <button mat-raised-button color="primary" matStepperNext class="btn">Næste</button>            
           </div>
         </form>
       </mat-step>
@@ -73,19 +76,51 @@
         <form [formGroup]="thirdFormGroup" fxLayout="column">
           <ng-template matStepLabel>Betaling</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Kortindehaverens navn" formControlName="thirdCtrl" required>
+            <input matInput placeholder="Kort nummer" formControlName="creditCardNumber" required>
           </mat-form-field>
+          <div fxLayout="row warp" class="creditcard-select">
+            <mat-form-field class="expiry-month">
+              <mat-hint>Udløbsdato</mat-hint>
+              <mat-label>Måned</mat-label>
+              <select matNativeControl formControlName="expiryDateMonth" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+                <option value="4">6</option>
+                <option value="4">7</option>
+                <option value="4">8</option>
+                <option value="4">9</option>
+                <option value="4">10</option>
+                <option value="4">11</option>
+                <option value="4">12</option>
+              </select>
+            </mat-form-field>
+            <mat-form-field class="expiry-year">
+              <mat-label>År</mat-label>
+              <select matNativeControl formControlName="expiryDateYear" required>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </mat-form-field>
+          </div>
           <mat-form-field>
-            <input matInput placeholder="Kort nummer" formControlName="thirdCtrl" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Udløbsdato" formControlName="thirdCtrl" required>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="CCV kode" formControlName="thirdCtrl" required>
+            <input matInput placeholder="CCV kode" formControlName="ccv" required>
           </mat-form-field>
           <div>
-            <button mat-raised-button color="primary" matStepperNext class="btn">Next</button>
+            <button mat-raised-button color="primary" matStepperPrevious class="btn">Tilbage</button>
+            <button mat-raised-button color="primary" class="btn" (click)="addtest()" [disabled]="!thirdFormGroup.valid || ! secondFormGroup.valid || ! firstFormGroup.valid || isCreateProcessing">Bekræft</button>
+            <div class="progress-spinner" *ngIf="isCreateProcessing">
+              <mat-spinner diameter="50"></mat-spinner>
+            </div>
           </div>
         </form>
       </mat-step>

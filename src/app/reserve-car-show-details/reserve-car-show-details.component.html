@@ -1,14 +1,14 @@
-<h1>BMW</h1>
+<h1>{{currentCar.carModel.carBrand.name}}</h1>
 <mat-card class="car-card">
-  <mat-card-subtitle>Model: <span class="car-info-text">I8</span></mat-card-subtitle>
-  <mat-card-subtitle>Nummerplade: <span class="car-info-text">1234 5678</span></mat-card-subtitle>
-  <mat-card-subtitle>Total KM Driven: <span class="car-info-text">200.000</span></mat-card-subtitle>
-  <mat-card-subtitle>KM Left: <span class="car-info-text">6.000</span></mat-card-subtitle>
-  <mat-card-subtitle>Charge: <span class="car-info-text">66%</span></mat-card-subtitle>
+  <mat-card-subtitle>Model: <span class="car-info-text">{{currentCar.carModel.model}}</span></mat-card-subtitle>
+  <mat-card-subtitle>Nummerplade: <span class="car-info-text">{{currentCar.licensePlate}}</span></mat-card-subtitle>
+  <mat-card-subtitle>Total KM Driven: <span class="car-info-text">{{currentCar.totalKM}}</span></mat-card-subtitle>
+  <mat-card-subtitle>KM Left: <span class="car-info-text">{{currentCar.eletricEngine.kMsAvailable}}</span></mat-card-subtitle>
+  <mat-card-subtitle>Charge: <span class="car-info-text">{{currentCar.eletricEngine.energyLeft}}%</span></mat-card-subtitle>
   <img mat-card-image src="/assets/car-01.jpg" alt="Photo of a car">
   <mat-card-content>
     <p>
-      The Shiba Inu is the smallest of the six original and distinct
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     </p>
   </mat-card-content>
 </mat-card>

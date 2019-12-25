@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef } from '@an
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Overlay, OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CustomersService } from '../service/customers.service';
+import { Customer, LoginAuthentication } from '../interface/customer';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +12,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class HeaderComponent implements OnInit {
 
+  isLoginFailed: boolean = false;
+  isLoginSuccess: boolean = false;
+  currentCustomer: Customer;
   //login menu
-  @ViewChild('loginMenuBtn', { static: false }) loginMenuBtn: HTMLElement;
-  @ViewChild('loginMenuTpl', { static: false }) loginMenuTpl: TemplateRef<any>;
+  @ViewChild('loginMenuBtn', { static: true }) loginMenuBtn: HTMLElement;
+  @ViewChild('loginMenuTpl', { static: true }) loginMenuTpl: TemplateRef<any>;
 
   loginForm = new FormGroup({
     email: new FormControl('', [
@@ -30,7 +35,7 @@ export class HeaderComponent implements OnInit {
   overlayRef2: OverlayRef;
   title = 'cartogo';
 
-  constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) { }
+  constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef, private customersService: CustomersService) { }
 
   ngOnInit() {
   }
@@ -57,4 +62,25 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  login() {
+    
+    let email = this.loginForm.get('email').value;
+    let password = this.loginForm.get('password').value;
+    const newLogin: LoginAuthentication = { email: email, passWord: password };
+    this.customersService.loginCustomer(newLogin)
+      .subscribe(data => {
+        this.customersService.currentCustomer = data;
+        if (!(this.customersService.currentCustomer === null)) {
+          this.isLoginFailed = false;
+          this.isLoginSuccess = true;
+          this.currentCustomer = this.customersService.currentCustomer;
+          console.log('success:');
+          console.log(this.currentCustomer.id);
+        } else {
+          this.isLoginFailed = true;
+          this.isLoginSuccess = false;
+          console.log('Brugernavn eller adgangskode er forkert');
+        }
+      });
+  }
 }

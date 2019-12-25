@@ -34,7 +34,10 @@
                   <mat-form-field class="example-full-width">
                     <input matInput type="password" placeholder="Adgangskode" formControlName="password">
                   </mat-form-field>
-                  <button mat-raised-button color="primary" [disabled]="!loginForm.valid">LOG IN</button>
+                  <div *ngIf="isLoginFailed" class="login-failed">
+                    Brugernavn eller adgangskode er forkert
+                  </div>
+                  <button mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="login()">LOG IN</button>
                 </form>
 
                 <div class="login-dropdown-link">
@@ -59,15 +62,15 @@
             <mat-icon>person_add</mat-icon>
           </button>
           <!--menu button-->
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" matTooltip="Menu">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" matTooltip="Menu" *ngIf="isLoginSuccess">
             <mat-icon>menu</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <mat-card class="example-card">
+            <mat-card class="example-card" *ngIf="isLoginSuccess">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>CarToGo</mat-card-title>
-                <mat-card-subtitle>Hello</mat-card-subtitle>
+                <mat-card-title>Velkomme</mat-card-title>
+                <mat-card-subtitle>{{currentCustomer.firstName}}</mat-card-subtitle>
               </mat-card-header>
             </mat-card>
             <button mat-menu-item>

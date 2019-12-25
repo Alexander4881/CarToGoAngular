@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Car } from '../interface/car'
 
 @Component({
   selector: 'app-reserve-car-show-details',
@@ -6,9 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./reserve-car-show-details.component.less']
 })
 export class ReserveCarShowDetailsComponent implements OnInit {
+  @Input() currentCar: Car;
+
   constructor() { }
 
   ngOnInit() {
+    console.log('show details:');
+    console.log(this.currentCar);
   }
 
 }
