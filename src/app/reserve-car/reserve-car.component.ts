@@ -27,13 +27,17 @@ export class ReserveCarComponent implements AfterViewInit {
   @ViewChild('mapWrapper', { static: false }) mapElement: ElementRef;
 
   ngAfterViewInit() {
+    this.customersService.loginAvailable();
     this.carService.getAllCar().subscribe(data => {
       this.carService.allCars = data;
       this.initializeMap();
       console.log(this.carService.allCars);
     });
   }
-  constructor(public dialog: MatDialog, private carService: CarService) { }
+  constructor(
+    public dialog: MatDialog,
+    private carService: CarService,
+    private customersService: CustomersService) { }
 
 
   openDialog(currentCar: Car): void {
@@ -186,6 +190,8 @@ export class ShowCarDetailsDialog {
       let reserverCar: ReserverCar = { carID: this.data.currentCar.id, customerID: this.customersService.currentCustomer.id };
 
       this.ordercarService.createOrder(reserverCar).subscribe(data => {
+        console.log('reservered:');
+        console.log(data);
         this.isCarDetailsActive = false;
         this.isCarRreservedActive = true;
         this.pinkCode = data.pinkCode.toString();

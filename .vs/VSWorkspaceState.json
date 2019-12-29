@@ -3,11 +3,12 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\create-profile",
-    "\\src\\app\\reserve-car",
-    "\\src\\app\\service",
+    "\\src\\app\\header",
+    "\\src\\app\\help",
+    "\\src\\app\\help-detail",
+    "\\src\\app\\shared-material",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\reserve-car\\reserve-car.component.ts",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

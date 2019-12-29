@@ -9,29 +9,36 @@
       <table mat-table [dataSource]="ordersDataSource" *ngIf="!isLoading" class="mat-elevation-z8">
         <ng-container matColumnDef="licensePlate">
           <th mat-header-cell *matHeaderCellDef>License Plate</th>
-          <td mat-cell *matCellDef="let element">{{ element.licensePlate }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.car.licensePlate }}</td>
         </ng-container>
 
         <ng-container matColumnDef="pinCode">
           <th mat-header-cell *matHeaderCellDef>Pin Code</th>
-          <td mat-cell *matCellDef="let element">{{ element.pinCode }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.pinkCode }}</td>
         </ng-container>
 
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef>Total</th>
-          <td mat-cell *matCellDef="let element">{{ element.total }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.total | currency:'DKK':'symbol-narrow' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          <td mat-cell *matCellDef="let element">
+            {{ element.status }}
+            <!--0: Standby; 1: Waiting to open; 2: Driving; 3: Finish-->
+            <div *ngIf="element.status == 0">Standby</div>
+            <div *ngIf="element.status == 1">Waiting</div>
+            <div *ngIf="element.status == 2">Driving</div>
+            <div *ngIf="element.status == 3">Finish</div>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="management">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let row">
             <!--(click)="reply(row)"-->
-            <button mat-button color="primary" (click)="openDialog()" >Close</button>
+            <button mat-button color="primary" (click)="openDialog(row)">Close</button>
           </td>
         </ng-container>
 

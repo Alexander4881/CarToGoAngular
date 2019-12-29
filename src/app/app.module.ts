@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedMaterialModule } from './shared-material/shared-material.module';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { ReserveCarComponent, ShowCarDetailsDialog } from './reserve-car/reserve
 import { ReserveCarShowDetailsComponent } from './reserve-car-show-details/reserve-car-show-details.component';
 import { OrderListComponent, ShowDeliverCarDialog } from './order-list/order-list.component';
 import { DeliverCarComponent } from './deliver-car/deliver-car.component';
+import { HelpComponent } from './help/help.component';
+import { HelpDetailComponent } from './help-detail/help-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import { DeliverCarComponent } from './deliver-car/deliver-car.component';
     CreateProfileComponent,
     ReserveCarComponent, ShowCarDetailsDialog,
     ReserveCarShowDetailsComponent,
-    OrderListComponent, ShowDeliverCarDialog, DeliverCarComponent,
+    OrderListComponent, ShowDeliverCarDialog, DeliverCarComponent, HelpComponent, HelpDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { DeliverCarComponent } from './deliver-car/deliver-car.component';
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedMaterialModule
+    SharedMaterialModule,
+    CommonModule
   ],
   entryComponents: [ReserveCarComponent, ShowCarDetailsDialog, OrderListComponent, ShowDeliverCarDialog ],
   providers: [],

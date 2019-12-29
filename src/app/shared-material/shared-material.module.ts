@@ -9,6 +9,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 import { MatButtonModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -25,7 +27,7 @@ import { PortalModule } from '@angular/cdk/portal';
 
 
 @NgModule({
-  exports: [MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, LayoutModule, FlexLayoutModule, MatMenuModule, MatIconModule, OverlayModule, PortalModule, MatToolbarModule, MatTooltipModule, MatStepperModule, MatRadioModule, MatCardModule, MatTableModule, MatProgressSpinnerModule],
+  exports: [MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule, LayoutModule, FlexLayoutModule, MatMenuModule, MatIconModule, OverlayModule, PortalModule, MatToolbarModule, MatTooltipModule, MatStepperModule, MatRadioModule, MatCardModule, MatTableModule, MatProgressSpinnerModule, MatExpansionModule, MatListModule],
   declarations: [],
   imports: [
     CommonModule

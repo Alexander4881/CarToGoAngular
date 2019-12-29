@@ -12,10 +12,21 @@ export interface OrderCar {
   pinkCode: string;
   qrCode: string;
   drivenKM: number;
+  total: number;
   customer: Customer;
   car: Car;
 }
 export interface ReserverCar {
   customerID: number;
   carID: number;
+}
+
+export interface TryPayment {
+  endDT: string;
+  total: number;
+}
+
+export interface CheckOutOrder {
+  orderCarID: number;
+  customerID: number;
 }

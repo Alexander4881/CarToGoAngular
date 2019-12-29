@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 
-import { Customer, DriversLicens, CreditCard } from '../interface/customer';
+import { Customer, DriversLicens, CreditCard, LoginAuthentication } from '../interface/customer';
 import { CustomersService } from '../service/customers.service';
 import { mastMatchValidator } from '../helper/form-validation';
 
@@ -94,8 +94,8 @@ export class CreateProfileComponent implements OnInit {
     this.isCreateProcessing = true;
     this.customersService.addCustomer(newCustomer).subscribe(data => {
       console.log(data);
-      this.isCreateProcessing = false;
-      this.router.navigateByUrl("reservecar");      
+      this.isCreateProcessing = false;      
+      this.router.navigateByUrl("/");
     });
 
   }

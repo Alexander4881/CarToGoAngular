@@ -1,0 +1,31 @@
+{{indexHelpRef}}
+<p>help-detail works!</p>
+<div *ngIf="indexHelpRef==2">
+  <mat-card class="help-card">
+    <mat-card-header>
+      <mat-card-title>
+        Opret en konto på YouTube
+      </mat-card-title>
+    </mat-card-header>
+    <video width="320" height="240" controls>
+      <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <mat-card-content>
+      <p>
+        For at logge ind på YouTube skal du oprette en Google-konto. Med en Google-konto kan du få adgang til mange YouTube-funktioner, bl.a. Kan lide, Abonner, Se senere og Afspilningshistorik.
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">1. Gå til youtube.com.</mat-list-item>
+        <mat-list-item role="listitem">2. Klik på Log ind øverst til højre.</mat-list-item>
+        <mat-list-item role="listitem">
+          3. Klik på Flere valgmuligheder > Opret konto.
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

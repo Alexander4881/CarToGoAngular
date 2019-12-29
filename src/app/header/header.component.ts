@@ -4,6 +4,10 @@ import { Overlay, OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomersService } from '../service/customers.service';
 import { Customer, LoginAuthentication } from '../interface/customer';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-header',
@@ -14,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   isLoginFailed: boolean = false;
   isLoginSuccess: boolean = false;
+
   currentCustomer: Customer;
   //login menu
   @ViewChild('loginMenuBtn', { static: true }) loginMenuBtn: HTMLElement;
@@ -35,7 +40,11 @@ export class HeaderComponent implements OnInit {
   overlayRef2: OverlayRef;
   title = 'cartogo';
 
-  constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef, private customersService: CustomersService) { }
+  constructor(
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef,
+    private customersService: CustomersService,
+    private router: Router  ) { }
 
   ngOnInit() {
   }
@@ -63,7 +72,6 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
-    
     let email = this.loginForm.get('email').value;
     let password = this.loginForm.get('password').value;
     const newLogin: LoginAuthentication = { email: email, passWord: password };
@@ -71,16 +79,24 @@ export class HeaderComponent implements OnInit {
       .subscribe(data => {
         this.customersService.currentCustomer = data;
         if (!(this.customersService.currentCustomer === null)) {
-          this.isLoginFailed = false;
-          this.isLoginSuccess = true;
+          this.isLoginFailed = false;          
+          //this.isLoginSuccess = true;
           this.currentCustomer = this.customersService.currentCustomer;
           console.log('success:');
+          console.log(this.isLoginSuccess);
           console.log(this.currentCustomer.id);
+          this.overlayRef2.dispose();
+          this.router.navigateByUrl("reservecar");
+
         } else {
           this.isLoginFailed = true;
-          this.isLoginSuccess = false;
+          //this.isLoginSuccess = false;
           console.log('Brugernavn eller adgangskode er forkert');
         }
       });
+  }
+
+  logout() {
+    this.customersService.logOut();
   }
 }

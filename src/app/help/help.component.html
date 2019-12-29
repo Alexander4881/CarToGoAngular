@@ -1,0 +1,36 @@
+<div fxLayout="column" class="page-main" fxLayoutAlign="center center">
+  <div class="help-list-wrapper">
+    <p>help works!</p>
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="specific-class">
+            <mat-panel-title>
+              Tilmeld dig, og administrer din konto
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="specific-class">
+            <mat-panel-title>
+              Kom godt igang
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="help-title" (click)="showHelpDetail(1)">Find og reserver en bybil</div>
+          <div class="help-title" (click)="showHelpDetail(2)">Sådan kommer du i gang med din tur</div>
+          <div class="help-title" (click)="showHelpDetail(3)">Når du er færdig med din tur</div>
+        </mat-expansion-panel>
+        
+        <mat-expansion-panel>
+          <mat-expansion-panel-header class="specific-class">
+            <mat-panel-title>
+              Se videoer
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+      <app-help-detail [indexHelpRef]="indexHelpRef"></app-help-detail>
+  </div>
+</div>

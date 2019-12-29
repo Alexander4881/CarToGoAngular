@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 
 import { Customer, LoginAuthentication } from '../interface/customer';
+import { Router } from '@angular/router'; 
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,7 +21,7 @@ export class CustomersService {
   customerUrl = 'https://localhost:5001/custome/';  // URL to web api
   currentCustomer: Customer ;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   /** POST: add a new customer to the database */
   addCustomer(customer: Customer): Observable<any> {
@@ -29,6 +30,25 @@ export class CustomersService {
 
   loginCustomer(loginMess: LoginAuthentication): Observable<any> {
     return this.http.post<Customer>(environment.loginApi, loginMess, httpOptions)
+  }
+
+  loginAvailable(): void {
+    console.log(this.currentCustomer);
+    if (!this.currentCustomer) {           
+      this.router.navigateByUrl("/");
+    }
+  }
+
+  logOut(): void {
+    this.currentCustomer = null;
+    console.log(this.currentCustomer);
+    this.router.navigateByUrl("/");
+  }
+
+  isLoginSucces(): boolean {
+    if (this.currentCustomer)
+    { return true; }
+    return false;
   }
 
 }

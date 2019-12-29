@@ -1,5 +1,5 @@
-<app-deliver-car></app-deliver-car>
+<app-deliver-car [currentOrderCar]="data.currentOrderCar"></app-deliver-car>
 <div class="deliver-car-pay" fxLayoutAlign="center center">
-  <button mat-raised-button color="primary" class="pay-btn">Betal</button>
+  <button mat-raised-button color="primary" class="pay-btn" (click)="checkoutDialog()">Betal</button>
   <button mat-raised-button color="accent" class="cancel-btn" (click)="closeDialog()">Annuller</button>
 </div>
