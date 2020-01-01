@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Injectable, Inject, OnDestroy, AfterViewInit, ElementRef, ViewChild, QueryList, ViewChildren } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -6,6 +6,7 @@ import { OrdercarService } from '../service/ordercar.service';
 import { CustomersService } from '../service/customers.service';
 import { OrderCar, CheckOutOrder } from '../interface/order-car';
 import { Router, NavigationEnd } from '@angular/router'; 
+import { map } from 'rxjs/operators';
 
 
 export interface DeliverCarDialogData {
@@ -18,17 +19,21 @@ export interface DeliverCarDialogData {
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.less']
 })
-export class OrderListComponent implements OnInit, OnDestroy {
+export class OrderListComponent implements OnInit, OnDestroy, AfterViewInit {
   ordersDataSource = new MatTableDataSource<OrderCar>();
   isLoading: boolean = true;
   orderListRouteSubscription: any;
+  secondsInterval = [];
+  @ViewChildren("secondTimespan") secondTimespan: QueryList<ElementRef>;
+
 
   constructor(
     private httpClient: HttpClient,
     public dialog: MatDialog,
     private ordercarService: OrdercarService,
     private customersService: CustomersService,
-    private router: Router) {
+    private router: Router,
+    private el: ElementRef) {
 
     //this.router.routeReuseStrategy.shouldReuseRoute = function () {
     //  return false;
@@ -39,6 +44,14 @@ export class OrderListComponent implements OnInit, OnDestroy {
       }
     });
 
+  }
+
+  ngAfterViewInit() {    
+    setInterval(() => {
+      //this.showSecondsInterval(1);
+      this.addSecondsInterval();
+    }, 1000);
+    
   }
 
   ngOnDestroy() {
@@ -59,6 +72,77 @@ export class OrderListComponent implements OnInit, OnDestroy {
     });
   }
 
+  showSecondsInterval(orderId: number): number {
+    
+    if (this.secondTimespan)
+    {            
+      if (this.secondTimespan.length > 0)
+      {        
+
+        this.secondTimespan.forEach(
+          (div: ElementRef) => {
+            let valStr = div.nativeElement.textContent;
+            let valArr = valStr.split('|');
+            let container = document.querySelector('.second-timespan-' + valArr[1]);
+            let cumulative: number = Math.floor(Number(valArr[0])) + 1;
+            console.log(cumulative);
+            container.innerHTML = cumulative.toString();
+            div.nativeElement.innerHTML = cumulative + "|" + valArr[1];
+            console.log(valStr);
+          }
+        );
+      }
+    }            
+    return orderId;    
+  }
+
+  getSecondsIntervalBetweenStartAndNow(refIndex: number): string {
+    return this.secondsInterval[refIndex];
+  }
+
+  addSecondsInterval(): void {
+    let that = this;
+    this.secondsInterval.forEach(
+      function (value, index) {
+        that.secondsInterval[index] = value + 1;        
+      },that)
+  }
+
+  secondFormatStr(secondVal: number): string {
+    let h = Math.floor(secondVal / 3600);
+    let m = Math.floor((secondVal / 60 % 60));
+    let s = Math.floor((secondVal % 60));
+    return h + ":" + m + ":" + s;
+  }
+
+  createSecondsIntervalBetweenStartAndNow(ordercars: OrderCar[]): void {
+
+    let that = this;
+    ordercars.forEach(function (value) {
+      if (value.status == 2)
+      {
+        that.ordercarService.getSecondsIntervalBetweenStartAndNow(value.id)
+        .subscribe(data => {
+          that.secondsInterval[value.id] = data;
+        });
+      }
+    },that); 
+
+    //this.ordercarService.getSecondsIntervalBetweenStartAndNow(orderId)
+    //  //.subscribe(data => {
+
+    //  //  console.log(data);
+
+    //  //})
+
+    //  .pipe(map(data => {
+    //  console.log('123');
+    //  return data;
+    //}))
+
+  }
+  
+
   ngOnInit() {
     this.customersService.loginAvailable();
 
@@ -72,6 +156,9 @@ export class OrderListComponent implements OnInit, OnDestroy {
       this.ordercarService.getOrderByCustomer(this.customersService.currentCustomer.id).subscribe(data => {
         console.log('get ordercar');
         console.log(data);
+        this.createSecondsIntervalBetweenStartAndNow(data);
+        console.log('secondsInterval');
+        console.log(this.secondsInterval);
         this.ordersDataSource.data = data;
         this.isLoading = false;
       });

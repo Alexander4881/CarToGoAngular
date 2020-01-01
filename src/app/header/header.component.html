@@ -62,10 +62,6 @@
           <button routerLink="createprofile" mat-icon-button aria-label="Add profil" matTooltip="Add Profil" *ngIf="!customersService.isLoginSucces()">
             <mat-icon>person_add</mat-icon>
           </button>
-          <!--add profil button-->
-          <button routerLink="help" mat-icon-button aria-label="Help" matTooltip="Help" >
-            <mat-icon>help</mat-icon>
-          </button>
           <!--menu button-->
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" matTooltip="Menu" *ngIf="customersService.isLoginSucces()">
             <mat-icon>menu</mat-icon>
@@ -91,6 +87,10 @@
               <span>Logout</span>
             </button>
           </mat-menu>
+          <!--help button-->
+          <button routerLink="help" mat-icon-button aria-label="Help" matTooltip="Help">
+            <mat-icon>help</mat-icon>
+          </button>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>

@@ -1,25 +1,33 @@
-{{indexHelpRef}}
-<p>help-detail works!</p>
-<div *ngIf="indexHelpRef==2">
+<p></p>
+<!--ref: 1-->
+<div *ngIf="indexHelpRef==1">
   <mat-card class="help-card">
     <mat-card-header>
       <mat-card-title>
-        Opret en konto på YouTube
+        Opret en konto på CarToGo
       </mat-card-title>
     </mat-card-header>
-    <video width="320" height="240" controls>
-      <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+    <video class="help-video" controls>
+      <source src="/assets/helpvideo/help-01-createprofil.webm" type="video/webm">
       Your browser does not support the video tag.
+      <!--https://www.w3schools.com/html/movie.mp4-->
     </video>
     <mat-card-content>
-      <p>
-        For at logge ind på YouTube skal du oprette en Google-konto. Med en Google-konto kan du få adgang til mange YouTube-funktioner, bl.a. Kan lide, Abonner, Se senere og Afspilningshistorik.
+      <p class="help-describe">
+        For at logge ind på CarToGo skal du oprette en CarToGo-konto. Med en CarToGo-konto kan du få adgang til mange funktioner, bl.a. Find og reserver en bybil osv.'
       </p>
+      <p class="help-describe">Når du tilmelder dig, beder vi dig bl.a. om at oplyse:<br />din e-mailadresse<br /> nummeret på dit kørekort<br />dine betalingsoplysninger</p>
       <mat-list role="list">
-        <mat-list-item role="listitem">1. Gå til youtube.com.</mat-list-item>
-        <mat-list-item role="listitem">2. Klik på Log ind øverst til højre.</mat-list-item>
+        <mat-list-item role="listitem">1. Gå til CarToGo.dk.</mat-list-item>
+        <mat-list-item role="listitem">2. Klik på opret profil øverst til højre.</mat-list-item>
         <mat-list-item role="listitem">
-          3. Klik på Flere valgmuligheder > Opret konto.
+          3. Udfyld felterne med navn, efternavn, email, adress, fødselsdag og adgangskode. Når du har udfyldt alle felterne, klikker du på Næste.
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          4. Indtast nu kørekortnummer, udstedesesland, gyldig, udløbsdato. Tryk Næste.
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          5. Nu skal beder din betalings kort, bl.a. kort nummer, udløbsdato, ccv kode. Tryk Bekræft.
         </mat-list-item>
       </mat-list>
     </mat-card-content>
@@ -29,3 +37,149 @@
     </mat-card-actions>
   </mat-card>
 </div>
+<!--ref: 2-->
+<div *ngIf="indexHelpRef==2">
+  <mat-card class="help-card">
+    <mat-card-header>
+      <mat-card-title>
+        Brug din konto til CarToGo(Log ind)
+      </mat-card-title>
+    </mat-card-header>
+    <video class="help-video" controls>
+      <source src="/assets/helpvideo/help-02-login.webm" type="video/webm">
+      Your browser does not support the video tag.
+      <!--https://www.w3schools.com/html/movie.mp4-->
+    </video>
+    <mat-card-content>
+      <p class="help-describe">
+        Log ind for at få adgang til find og reserver en bybil og mere. Få flere oplysninger om, hvordan du opretter en CarToGo-konto.
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">1. Gå til CarToGo.dk.</mat-list-item>
+        <mat-list-item role="listitem">2. Klik på Log ind øverst til højre.</mat-list-item>
+        <mat-list-item role="listitem">
+          3. Indtast dit email og din adgangskode til din CarToGo-konto
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!--ref: 3-->
+<div *ngIf="indexHelpRef==3">
+  <mat-card class="help-card">
+    <mat-card-header>
+      <mat-card-title>
+        Log ud af CarToGo
+      </mat-card-title>
+    </mat-card-header>
+    <video controls class="help-video">
+      <source src="/assets/helpvideo/help-03-logout.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+    <mat-card-content>
+      <p class="help-describe">
+        Du kan logge ud af din CarToGO-konto.Du skal angive din adgangskode for at logge ind igen.
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">1. Gå til CarToGo.dk og logge ind.</mat-list-item>
+        <mat-list-item role="listitem">2. Øverst til højre skal du klikke på Profil og derefter Log ud.</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!--ref: 4-->
+<div *ngIf="indexHelpRef==4">
+  <mat-card class="help-card">
+    <mat-card-header>
+      <mat-card-title>
+        Find og reserver en bybil
+      </mat-card-title>
+    </mat-card-header>
+    <video controls class="help-video">
+      <source src="/assets/helpvideo/help-04-reserve-car.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+    <mat-card-content>
+      <p class="help-describe">
+        Tilmeldt og klar til at køre? Følg trinene herunder og kom af sted med det samme.
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">1. Øverst til højre skal du klikke på Profil.</mat-list-item>
+        <mat-list-item role="listitem">2. Tryk 'Reserver' og at find den bybil, du gerne vil køre i.</mat-list-item>
+        <mat-list-item role="listitem">3. Tryk 'bilen'. Bybilen er nu reserveret til dig i 15 minutter.</mat-list-item>
+        <mat-list-item role="listitem">4. Din betaling starter først, når du har indtastet din PIN-kode..</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!--ref: 5-->
+<div *ngIf="indexHelpRef==5">
+  <mat-card class="help-card">
+    <mat-card-header>
+      <mat-card-title>
+        Sådan kommer du i gang med din tur
+      </mat-card-title>
+    </mat-card-header>
+    <video controls class="help-video">
+      <source src="/assets/helpvideo/help-04-reserve-car.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+    <mat-card-content>
+      <p class="help-describe">
+        Sådan kommer du i gang med din tur.
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">1. Start bybilen, Du kan starte bybilen, når du har indtastet din 5-cifrede PIN-kode.</mat-list-item>
+        <mat-list-item role="listitem">
+          2. Sæt bybilen i gear,I bilen skal du bruge det grå håndtag bag rattet for at sætte bybilen i gear. Træd bremsen ned og vælg 'D' for at køre frem eller 'R' for at bakke.
+        </mat-list-item>
+        <mat-list-item role="listitem">3. Nå alt det, du gerne vil. Parkér og lås bybilen.</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!--ref: 6-->
+<div *ngIf="indexHelpRef==6">
+  <mat-card class="help-card">
+    <mat-card-header>
+      <mat-card-title>
+        Når du er færdig med din tur
+      </mat-card-title>
+    </mat-card-header>
+    <video controls class="help-video">
+      <source src="/assets/helpvideo/help-06-lock-car.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+    <mat-card-content>
+      <p class="help-describe">
+        Parkér bybilen korrekt og med at låser du bybilen og afslutter din tur.
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">1. Øverst til højre skal du klikke på Profil.</mat-list-item>
+        <mat-list-item role="listitem">2. Tryk 'Order' og at find den bybil, du kører i.</mat-list-item>
+        <mat-list-item role="listitem">3. Tryk 'Låse', men tjek kvitteringen og tryk 'Betale'.</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<p></p>

@@ -5,5 +5,6 @@ export const environment = {
   createOrder: 'https://localhost:5001/Reserve/',
   getOrderByCustomer: 'https://localhost:5001/Order/customerId/Customer',
   getTryPayMentByOrderId: 'https://localhost:5001/Order/OrderCarId/trypayment',
-  checkoutOrderByOrderIdAndCustomerId: 'https://localhost:5001/Order/checkoutorder'
+  checkoutOrderByOrderIdAndCustomerId: 'https://localhost:5001/Order/checkoutorder',
+  getSecondsIntervalBetweenStartAndNow: 'https://localhost:5001/Order/OrderCarId/getsecondsinterval'
 };

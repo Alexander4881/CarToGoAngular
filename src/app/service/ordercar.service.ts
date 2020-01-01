@@ -39,4 +39,11 @@ export class OrdercarService {
     return this.http.post<OrderCar>(environment.checkoutOrderByOrderIdAndCustomerId, checkOutOrder, httpOptions)
   }
 
+  getSecondsIntervalBetweenStartAndNow(orderCarId: number): Observable<number> {
+    let url: string = environment.getSecondsIntervalBetweenStartAndNow.replace('OrderCarId', orderCarId.toString());
+    console.log('url:');
+    console.log(url);
+    return this.http.get<number>(url, httpOptions)
+  }
+
 }

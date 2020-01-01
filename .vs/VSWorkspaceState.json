@@ -4,11 +4,9 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\header",
-    "\\src\\app\\help",
-    "\\src\\app\\help-detail",
-    "\\src\\app\\shared-material",
+    "\\src\\app\\index-page-main",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\header\\header.component.html",
   "PreviewInSolutionExplorer": false
 }
